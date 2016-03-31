@@ -4,23 +4,109 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>codingPage | BlainPeng&#39;s Blog</title>
+    <title>BlainPeng&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Blain Peng">
     
 
     
-    <meta name="description" content="Welcome to my blog">
+    <meta name="description" content="OC学习笔记一-
+类-1、类的声明
+@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+2、类的实现  
+@implementation 类名
+
+//行为的具体实现
+
+@end
+3、类的方法
+
+分类
+
+类方法：        用 + 表示
+对象方法：    用 - 表示
+注意：类方法只能用类来调用，而对象方法只能用对象来调用
+
+
+
+声明
+
+无参方">
 <meta property="og:type" content="article">
-<meta property="og:title" content="codingPage">
-<meta property="og:url" content="http://yoursite.com/2016/03/15/codingPage/index.html">
+<meta property="og:title" content="BlainPeng's Blog">
+<meta property="og:url" content="http://yoursite.com/2016/03/31/OC_01/index.html">
 <meta property="og:site_name" content="BlainPeng's Blog">
-<meta property="og:description" content="Welcome to my blog">
-<meta property="og:updated_time" content="2016-03-15T14:39:24.417Z">
+<meta property="og:description" content="OC学习笔记一-
+类-1、类的声明
+@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+2、类的实现  
+@implementation 类名
+
+//行为的具体实现
+
+@end
+3、类的方法
+
+分类
+
+类方法：        用 + 表示
+对象方法：    用 - 表示
+注意：类方法只能用类来调用，而对象方法只能用对象来调用
+
+
+
+声明
+
+无参方">
+<meta property="og:image" content="http://yoursite.com/F:\HEXO\public\img/程序执行内存图.png">
+<meta property="og:updated_time" content="2016-03-31T15:42:10.559Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="codingPage">
-<meta name="twitter:description" content="Welcome to my blog">
+<meta name="twitter:title" content="BlainPeng's Blog">
+<meta name="twitter:description" content="OC学习笔记一-
+类-1、类的声明
+@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+2、类的实现  
+@implementation 类名
+
+//行为的具体实现
+
+@end
+3、类的方法
+
+分类
+
+类方法：        用 + 表示
+对象方法：    用 - 表示
+注意：类方法只能用类来调用，而对象方法只能用对象来调用
+
+
+
+声明
+
+无参方">
+<meta name="twitter:image" content="http://yoursite.com/F:\HEXO\public\img/程序执行内存图.png">
 
     
     <link rel="alternative" href="/atom.xml" title="BlainPeng&#39;s Blog" type="application/atom+xml">
@@ -78,14 +164,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/15/codingPage/" title="codingPage" itemprop="url">codingPage</a>
+      <a href="/2016/03/31/OC_01/" title="" itemprop="url"></a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Blain Peng" target="_blank" itemprop="author">Blain Peng</a>
 		
   <p class="article-time">
-    <time datetime="2016-03-15T14:39:24.000Z" itemprop="datePublished"> 发表于 2016-03-15</time>
+    <time datetime="2016-03-31T15:33:33.978Z" itemprop="datePublished"> 发表于 2016-03-31</time>
     
   </p>
 </header>
@@ -98,7 +184,170 @@
 		
 		</div>
 		
-		  
+		<p>OC学习笔记一<br>-</p>
+<p>类<br>-<br>1、类的声明</p>
+<pre><code>@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+</code></pre><p>2、类的实现  </p>
+<pre><code>@implementation 类名
+
+//行为的具体实现
+
+@end
+</code></pre><p>3、类的方法</p>
+<ul>
+<li><p>分类</p>
+<ul>
+<li>类方法：        用 + 表示</li>
+<li><p>对象方法：    用 - 表示</p>
+<p><strong>注意：类方法只能用类来调用，而对象方法只能用对象来调用</strong></p>
+</li>
+</ul>
+</li>
+<li><p>声明</p>
+<ul>
+<li><p>无参方法</p>
+<pre><code>-(返回值类型)方法名；
+</code></pre></li>
+<li><p>有参方法</p>
+<pre><code>-(返回值类型)方法名:(参数类型)参数名;
+
++(返回值类型)方法名:(参数类型1)参数名1 and:(参数类型2)参数名2;
+</code></pre><p><strong>注意：这里的方法名为：方法名: and:</strong></p>
+</li>
+</ul>
+</li>
+<li><p>类方法使用场景</p>
+</li>
+</ul>
+<p>如果方法中没有使用到属性(或叫成员变量), 那么能用类方法就用类方法，因为类方法的执行效率比对象方法高。为什么？下文会提到。类方法一般用于定义工具方法，如：字符串查找、文件操作、数据库操作</p>
+<p>对象<br>-</p>
+<p>1、对象的创建</p>
+<pre><code>类名 *变量名 ＝ ［类名 new];
+</code></pre><p>只要通过一个类调用类的new方法, 也就是给类发送一个叫做new的消息之后，系统内部就会做3件事情：</p>
+<ul>
+<li>为该类创建出来的对象分配存储空间</li>
+<li>初始化该类创建出来的对象中的属性</li>
+<li>返回该类创建出来的对象对应的地址</li>
+</ul>
+<p>2、访问方法和属性</p>
+<ul>
+<li><p>访问类方法</p>
+<pre><code>［类名 类方法名］
+</code></pre></li>
+<li><p>访问对象方法和属性</p>
+<pre><code>[对象 对象方法名]
+对象-&gt;属性名
+</code></pre></li>
+</ul>
+<p>Demo<br>-</p>
+<pre><code>    /*
+     需求：
+     事物名称: iPhone
+     属性: 颜色, 型号, cpu, 尺寸
+     行为:打电话, 发短信,获取本机信息,计算器功能
+
+     */
+
+#import &lt;Foundation/Foundation.h&gt;
+
+typedef enum {
+    kIColorBlack,
+    kIColorWhite,
+    kIColorTHJ    
+}IColor;
+
+@interface IPhone : NSObject{
+
+ // 默认情况下, OC对象中的属性是不能直接访问的,通过@public让类中的属性公开, 以后就可以直接通过一个指向结构体的指针来操作对象中的属性
+@public
+    //属性的声明一般以 _开头,不需要赋初始化值
+    IColor _color;
+    float _model;
+    int _cpu;
+    float _size;
+}
+-(void)call:(int)number;
+-(void)sendMessageWithNum:(int)number andContent:(NSString *)content;
+-(void)about;
++(int)sumWithValue1:(int)value1 andValue2:(int)value2;
++(NSString *)getColorName:(IColor)number;
+@end
+
+@implementation IPhone
+
+-(void)call:(int)number{
+    NSLog(@&quot;给 %d 打电话&quot;,number);
+}
+
+-(void)sendMessageWithNum:(int)number andContent:(NSString *)content{
+    NSLog(@&quot;给 %d发送短信，短信内容为: %@&quot;,number,content); 
+}
+-(void)about{
+    NSString *name = [IPhone getColorName:_color];
+    NSLog(@&quot;颜色：%@, 型号：%.2f, cpu：%d, 尺寸：%.2f&quot;,name,_model,_cpu,_size);
+}
++(int)sumWithValue1:(int)value1 andValue2:(int)value2{
+    return value1+value2;
+}
+
++(NSString *)getColorName:(IColor)number{
+    NSString *name;
+    switch (number) {
+        case 0:
+            name = @&quot;黑色&quot;;
+            break;
+        case 1:
+            name = @&quot;白色&quot;;
+            break;
+    case 2:
+            name = @&quot;土豪金&quot;;
+            break;
+    }
+
+    return name;
+}
+
+@end
+
+
+int main(int argc, const char * argv[]) {
+        /*
+         创建对象
+         每次给Iphone类发送一个new消息都会开辟一块新的存储空间
+         也就意味着每次发送new消息创建出来的对象都是一个新的对象
+     */
+
+    IPhone *pIphone = [IPhone new];
+    pIphone-&gt;_color = kIColorTHJ;
+    pIphone-&gt;_model = 7;
+    pIphone-&gt;_cpu = 2;
+    pIphone-&gt;_size = 5.7;
+
+    [pIphone call:10086];
+    [pIphone sendMessageWithNum:10010 andContent:@&quot;中国电信的客服号是多少？&quot;];
+    [pIphone about];
+    [IPhone sumWithValue1:50 andValue2:50];
+
+    return 0;
+}
+</code></pre><p>###程序执行内存图</p>
+<p><img src="F:\HEXO\public\img/程序执行内存图.png" alt=""><br>当我们执行程序时，我们的代码会被加载到代码区。</p>
+<p>当执行创建对象时，上文已经说过，会做三件事：</p>
+<p>1､ 在堆内存中开辟内存空间存储这个实例对象，也就是图中的IPhone类实例对象</p>
+<p>2、初始化对象中的属性，此时IPhone类中的四种属性初始值都为0或0.0</p>
+<p>3、既然是一块内存空间，那么就会有一个地址，将这个地址返回到一个指针变量，所以这个指针变量将<br>   会存储在栈区，然后这个指针变量就指向了这块内存</p>
+<p><strong>注意</strong></p>
+<p>创建对象的时候返回的地址是类的第0个属性的地址，而类的第0个属性是一个叫做isa的属性，isa是一个指针, 占8个字节。</p>
+<p>其实类也是一个对象, 也就意味着你创建的类也是一个对象。平时我们所说的创建对象其实就是通过一个类对象来创建一个新的实例对象。类对象是系统自动帮我们创建的, 里面保存了实例对象的所有方法；而实例对象是程序自己手动通过new来创建的, 实例对象中有一个isa指针就指向了创建它的那个类对象。</p>
+<p>既然对象指向了实例对象的内存地址，所以我们就可以通过这个对象进行重新赋值了，也可以调用对象方法，但是对象方法不是存储在实例对象内的，而是存储在类对象中，所以只能通过isa这个指针找到所对应的对象方法，而调用类方法，是直接通过类去寻找对应的方法，不需要经过rsa指针，这就是为什么上文说类方法执行效率比对象方法高的原因了。</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -110,7 +359,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2016/03/15/codingPage/" data-title="codingPage | BlainPeng&#39;s Blog" data-tsina="13265605559" class="share clearfix">
+	  <div data-url="http://yoursite.com/2016/03/31/OC_01/" data-title="BlainPeng&#39;s Blog" data-tsina="13265605559" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -124,7 +373,7 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/03/31/OC_01/" title="">
+ <a href="/2016/03/31/OC学习笔记一/" title="">
   <strong>上一篇：</strong><br/>
   <span>
   (no title)</span>
@@ -133,9 +382,9 @@
 
 
 <div class="next">
-<a href="/2016/03/14/my-new-post/"  title="my new post">
+<a href="/2016/03/15/codingPage/"  title="codingPage">
  <strong>下一篇：</strong><br/> 
- <span>my new post
+ <span>codingPage
 </span>
 </a>
 </div>
@@ -144,7 +393,7 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2016/03/15/codingPage/" data-title="codingPage" data-url="http://yoursite.com/2016/03/15/codingPage/"></div>
+	<div class="ds-thread" data-thread-key="2016/03/31/OC_01/" data-title="" data-url="http://yoursite.com/2016/03/31/OC_01/"></div>
 </section>
 
 

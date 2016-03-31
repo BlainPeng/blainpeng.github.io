@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-03-15T14:39:24.417Z</updated>
+  <updated>2016-03-31T16:25:13.142Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,390 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2016/03/31/OC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/"/>
+    <id>http://yoursite.com/2016/03/31/OC学习笔记一/</id>
+    <published>2016-03-31T15:49:49.520Z</published>
+    <updated>2016-03-31T16:25:13.142Z</updated>
+    
+    <content type="html">&lt;p&gt;##OC学习笔记一&lt;/p&gt;
+&lt;p&gt;###类&lt;br&gt;1、类的声明&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2、类的实现  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@implementation 类名
+
+//行为的具体实现
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3、类的方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;分类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类方法：        用 + 表示&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对象方法：    用 - 表示&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：类方法只能用类来调用，而对象方法只能用对象来调用&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;声明&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;无参方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-(返回值类型)方法名；
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;有参方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-(返回值类型)方法名:(参数类型)参数名;
+
++(返回值类型)方法名:(参数类型1)参数名1 and:(参数类型2)参数名2;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;注意：这里的方法名为：方法名: and:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;类方法使用场景&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果方法中没有使用到属性(或叫成员变量), 那么能用类方法就用类方法，因为类方法的执行效率比对象方法高。为什么？下文会提到。类方法一般用于定义工具方法，如：字符串查找、文件操作、数据库操作&lt;/p&gt;
+&lt;p&gt;###对象&lt;/p&gt;
+&lt;p&gt;1、对象的创建&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;类名 *变量名 ＝ ［类名 new];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只要通过一个类调用类的new方法, 也就是给类发送一个叫做new的消息之后，系统内部就会做3件事情：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为该类创建出来的对象分配存储空间&lt;/li&gt;
+&lt;li&gt;初始化该类创建出来的对象中的属性&lt;/li&gt;
+&lt;li&gt;返回该类创建出来的对象对应的地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、访问方法和属性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;访问类方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;［类名 类方法名］
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;访问对象方法和属性&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[对象 对象方法名]
+对象-&amp;gt;属性名
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###Demo&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    /*
+     需求：
+     事物名称: iPhone
+     属性: 颜色, 型号, cpu, 尺寸
+     行为:打电话, 发短信,获取本机信息,计算器功能
+
+     */
+
+#import &amp;lt;Foundation/Foundation.h&amp;gt;
+
+typedef enum {
+    kIColorBlack,
+    kIColorWhite,
+    kIColorTHJ    
+}IColor;
+
+@interface IPhone : NSObject{
+
+ // 默认情况下, OC对象中的属性是不能直接访问的,通过@public让类中的属性公开, 以后就可以直接通过一个指向结构体的指针来操作对象中的属性
+@public
+    //属性的声明一般以 _开头,不需要赋初始化值
+    IColor _color;
+    float _model;
+    int _cpu;
+    float _size;
+}
+-(void)call:(int)number;
+-(void)sendMessageWithNum:(int)number andContent:(NSString *)content;
+-(void)about;
++(int)sumWithValue1:(int)value1 andValue2:(int)value2;
++(NSString *)getColorName:(IColor)number;
+@end
+
+@implementation IPhone
+
+-(void)call:(int)number{
+    NSLog(@&amp;quot;给 %d 打电话&amp;quot;,number);
+}
+
+-(void)sendMessageWithNum:(int)number andContent:(NSString *)content{
+    NSLog(@&amp;quot;给 %d发送短信，短信内容为: %@&amp;quot;,number,content); 
+}
+-(void)about{
+    NSString *name = [IPhone getColorName:_color];
+    NSLog(@&amp;quot;颜色：%@, 型号：%.2f, cpu：%d, 尺寸：%.2f&amp;quot;,name,_model,_cpu,_size);
+}
++(int)sumWithValue1:(int)value1 andValue2:(int)value2{
+    return value1+value2;
+}
+
++(NSString *)getColorName:(IColor)number{
+    NSString *name;
+    switch (number) {
+        case 0:
+            name = @&amp;quot;黑色&amp;quot;;
+            break;
+        case 1:
+            name = @&amp;quot;白色&amp;quot;;
+            break;
+    case 2:
+            name = @&amp;quot;土豪金&amp;quot;;
+            break;
+    }
+
+    return name;
+}
+
+@end
+
+
+int main(int argc, const char * argv[]) {
+        /*
+         创建对象
+         每次给Iphone类发送一个new消息都会开辟一块新的存储空间
+         也就意味着每次发送new消息创建出来的对象都是一个新的对象
+     */
+
+    IPhone *pIphone = [IPhone new];
+    pIphone-&amp;gt;_color = kIColorTHJ;
+    pIphone-&amp;gt;_model = 7;
+    pIphone-&amp;gt;_cpu = 2;
+    pIphone-&amp;gt;_size = 5.7;
+
+    [pIphone call:10086];
+    [pIphone sendMessageWithNum:10010 andContent:@&amp;quot;中国电信的客服号是多少？&amp;quot;];
+    [pIphone about];
+    [IPhone sumWithValue1:50 andValue2:50];
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###程序执行内存图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;file://F:\StormMedia\qq.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;当我们执行程序时，我们的代码会被加载到代码区。&lt;/p&gt;
+&lt;p&gt;当执行创建对象时，上文已经说过，会做三件事：&lt;/p&gt;
+&lt;p&gt;1､ 在堆内存中开辟内存空间存储这个实例对象，也就是图中的IPhone类实例对象&lt;/p&gt;
+&lt;p&gt;2、初始化对象中的属性，此时IPhone类中的四种属性初始值都为0或0.0&lt;/p&gt;
+&lt;p&gt;3、既然是一块内存空间，那么就会有一个地址，将这个地址返回到一个指针变量，所以这个指针变量将&lt;br&gt;   会存储在栈区，然后这个指针变量就指向了这块内存&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;创建对象的时候返回的地址是类的第0个属性的地址，而类的第0个属性是一个叫做isa的属性，isa是一个指针, 占8个字节。&lt;/p&gt;
+&lt;p&gt;其实类也是一个对象, 也就意味着你创建的类也是一个对象。平时我们所说的创建对象其实就是通过一个类对象来创建一个新的实例对象。类对象是系统自动帮我们创建的, 里面保存了实例对象的所有方法；而实例对象是程序自己手动通过new来创建的, 实例对象中有一个isa指针就指向了创建它的那个类对象。&lt;/p&gt;
+&lt;p&gt;既然对象指向了实例对象的内存地址，所以我们就可以通过这个对象进行重新赋值了，也可以调用对象方法，但是对象方法不是存储在实例对象内的，而是存储在类对象中，所以只能通过isa这个指针找到所对应的对象方法，而调用类方法，是直接通过类去寻找对应的方法，不需要经过rsa指针，这就是为什么上文说类方法执行效率比对象方法高的原因了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##OC学习笔记一&lt;/p&gt;
+&lt;p&gt;###类&lt;br&gt;1、类的声明&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2、类的实现  &lt;/p&gt;
+&lt;pre&gt;&lt;cod
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2016/03/31/OC_01/"/>
+    <id>http://yoursite.com/2016/03/31/OC_01/</id>
+    <published>2016-03-31T15:33:33.978Z</published>
+    <updated>2016-03-31T15:42:10.559Z</updated>
+    
+    <content type="html">&lt;p&gt;OC学习笔记一&lt;br&gt;-&lt;/p&gt;
+&lt;p&gt;类&lt;br&gt;-&lt;br&gt;1、类的声明&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2、类的实现  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@implementation 类名
+
+//行为的具体实现
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3、类的方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;分类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类方法：        用 + 表示&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对象方法：    用 - 表示&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：类方法只能用类来调用，而对象方法只能用对象来调用&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;声明&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;无参方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-(返回值类型)方法名；
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;有参方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-(返回值类型)方法名:(参数类型)参数名;
+
++(返回值类型)方法名:(参数类型1)参数名1 and:(参数类型2)参数名2;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;注意：这里的方法名为：方法名: and:&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;类方法使用场景&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果方法中没有使用到属性(或叫成员变量), 那么能用类方法就用类方法，因为类方法的执行效率比对象方法高。为什么？下文会提到。类方法一般用于定义工具方法，如：字符串查找、文件操作、数据库操作&lt;/p&gt;
+&lt;p&gt;对象&lt;br&gt;-&lt;/p&gt;
+&lt;p&gt;1、对象的创建&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;类名 *变量名 ＝ ［类名 new];
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;只要通过一个类调用类的new方法, 也就是给类发送一个叫做new的消息之后，系统内部就会做3件事情：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为该类创建出来的对象分配存储空间&lt;/li&gt;
+&lt;li&gt;初始化该类创建出来的对象中的属性&lt;/li&gt;
+&lt;li&gt;返回该类创建出来的对象对应的地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、访问方法和属性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;访问类方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;［类名 类方法名］
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;访问对象方法和属性&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[对象 对象方法名]
+对象-&amp;gt;属性名
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Demo&lt;br&gt;-&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    /*
+     需求：
+     事物名称: iPhone
+     属性: 颜色, 型号, cpu, 尺寸
+     行为:打电话, 发短信,获取本机信息,计算器功能
+
+     */
+
+#import &amp;lt;Foundation/Foundation.h&amp;gt;
+
+typedef enum {
+    kIColorBlack,
+    kIColorWhite,
+    kIColorTHJ    
+}IColor;
+
+@interface IPhone : NSObject{
+
+ // 默认情况下, OC对象中的属性是不能直接访问的,通过@public让类中的属性公开, 以后就可以直接通过一个指向结构体的指针来操作对象中的属性
+@public
+    //属性的声明一般以 _开头,不需要赋初始化值
+    IColor _color;
+    float _model;
+    int _cpu;
+    float _size;
+}
+-(void)call:(int)number;
+-(void)sendMessageWithNum:(int)number andContent:(NSString *)content;
+-(void)about;
++(int)sumWithValue1:(int)value1 andValue2:(int)value2;
++(NSString *)getColorName:(IColor)number;
+@end
+
+@implementation IPhone
+
+-(void)call:(int)number{
+    NSLog(@&amp;quot;给 %d 打电话&amp;quot;,number);
+}
+
+-(void)sendMessageWithNum:(int)number andContent:(NSString *)content{
+    NSLog(@&amp;quot;给 %d发送短信，短信内容为: %@&amp;quot;,number,content); 
+}
+-(void)about{
+    NSString *name = [IPhone getColorName:_color];
+    NSLog(@&amp;quot;颜色：%@, 型号：%.2f, cpu：%d, 尺寸：%.2f&amp;quot;,name,_model,_cpu,_size);
+}
++(int)sumWithValue1:(int)value1 andValue2:(int)value2{
+    return value1+value2;
+}
+
++(NSString *)getColorName:(IColor)number{
+    NSString *name;
+    switch (number) {
+        case 0:
+            name = @&amp;quot;黑色&amp;quot;;
+            break;
+        case 1:
+            name = @&amp;quot;白色&amp;quot;;
+            break;
+    case 2:
+            name = @&amp;quot;土豪金&amp;quot;;
+            break;
+    }
+
+    return name;
+}
+
+@end
+
+
+int main(int argc, const char * argv[]) {
+        /*
+         创建对象
+         每次给Iphone类发送一个new消息都会开辟一块新的存储空间
+         也就意味着每次发送new消息创建出来的对象都是一个新的对象
+     */
+
+    IPhone *pIphone = [IPhone new];
+    pIphone-&amp;gt;_color = kIColorTHJ;
+    pIphone-&amp;gt;_model = 7;
+    pIphone-&amp;gt;_cpu = 2;
+    pIphone-&amp;gt;_size = 5.7;
+
+    [pIphone call:10086];
+    [pIphone sendMessageWithNum:10010 andContent:@&amp;quot;中国电信的客服号是多少？&amp;quot;];
+    [pIphone about];
+    [IPhone sumWithValue1:50 andValue2:50];
+
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###程序执行内存图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;F:\HEXO\public\img/程序执行内存图.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;当我们执行程序时，我们的代码会被加载到代码区。&lt;/p&gt;
+&lt;p&gt;当执行创建对象时，上文已经说过，会做三件事：&lt;/p&gt;
+&lt;p&gt;1､ 在堆内存中开辟内存空间存储这个实例对象，也就是图中的IPhone类实例对象&lt;/p&gt;
+&lt;p&gt;2、初始化对象中的属性，此时IPhone类中的四种属性初始值都为0或0.0&lt;/p&gt;
+&lt;p&gt;3、既然是一块内存空间，那么就会有一个地址，将这个地址返回到一个指针变量，所以这个指针变量将&lt;br&gt;   会存储在栈区，然后这个指针变量就指向了这块内存&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;创建对象的时候返回的地址是类的第0个属性的地址，而类的第0个属性是一个叫做isa的属性，isa是一个指针, 占8个字节。&lt;/p&gt;
+&lt;p&gt;其实类也是一个对象, 也就意味着你创建的类也是一个对象。平时我们所说的创建对象其实就是通过一个类对象来创建一个新的实例对象。类对象是系统自动帮我们创建的, 里面保存了实例对象的所有方法；而实例对象是程序自己手动通过new来创建的, 实例对象中有一个isa指针就指向了创建它的那个类对象。&lt;/p&gt;
+&lt;p&gt;既然对象指向了实例对象的内存地址，所以我们就可以通过这个对象进行重新赋值了，也可以调用对象方法，但是对象方法不是存储在实例对象内的，而是存储在类对象中，所以只能通过isa这个指针找到所对应的对象方法，而调用类方法，是直接通过类去寻找对应的方法，不需要经过rsa指针，这就是为什么上文说类方法执行效率比对象方法高的原因了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;OC学习笔记一&lt;br&gt;-&lt;/p&gt;
+&lt;p&gt;类&lt;br&gt;-&lt;br&gt;1、类的声明&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@interface 类名：NSObject{
+
+//定义类的属性
+
+}
+//定义类的行为
+
+@end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2、类的实现  &lt;/p&gt;
+&lt;pre
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>codingPage</title>
@@ -49,33 +433,6 @@
     </summary>
     
       <category term="blog" scheme="http://yoursite.com/categories/blog/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2016/03/14/hello-world/"/>
-    <id>http://yoursite.com/2016/03/14/hello-world/</id>
-    <published>2016-03-14T12:42:11.532Z</published>
-    <updated>2016-03-14T12:42:11.532Z</updated>
-    
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-    
-    </summary>
     
     
   </entry>
